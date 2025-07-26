@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Churn Prediction</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #1e1e1e;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #ffcc00;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #2a2a2a;
+            color: #ffffff;
+        }
+
+        input[type="submit"] {
+            margin-top: 20px;
+            background-color: #ffcc00;
+            color: #000;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #e6b800;
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 20px;
+            color: #00ff88;
+        }
+    </style>
+</head>
+<body> <div class="container">
+    <h2>Enter Customer Details</h2>
+    <form action="/predict" method="post">
+        Gender: <select name="gender"><option>Male</option><option>Female</option></select><br>
+        Senior Citizen: <select name="SeniorCitizen"><option value="0">No</option><option value="1">Yes</option></select><br>
+        Partner: <select name="Partner"><option>Yes</option><option>No</option></select><br>
+        Dependents: <select name="Dependents"><option>Yes</option><option>No</option></select><br>
+        Tenure: <input type="number" name="tenure" required><br>
+        Phone Service: <select name="PhoneService"><option>Yes</option><option>No</option></select><br>
+        Multiple Lines: <select name="MultipleLines"><option>Yes</option><option>No</option><option>No phone service</option></select><br>
+        Internet Service: <select name="InternetService"><option>DSL</option><option>Fiber optic</option><option>No</option></select><br>
+        Online Security: <select name="OnlineSecurity"><option>Yes</option><option>No</option><option>No internet service</option></select><br>
+        Online Backup: <select name="OnlineBackup"><option>Yes</option><option>No</option><option>No internet service</option></select><br>
+        Device Protection: <select name="DeviceProtection"><option>Yes</option><option>No</option><option>No internet service</option></select><br>
+        Tech Support: <select name="TechSupport"><option>Yes</option><option>No</option><option>No internet service</option></select><br>
+        Streaming TV: <select name="StreamingTV"><option>Yes</option><option>No</option><option>No internet service</option></select><br>
+        Streaming Movies: <select name="StreamingMovies"><option>Yes</option><option>No</option><option>No internet service</option></select><br>
+        Contract: <select name="Contract"><option>Month-to-month</option><option>One year</option><option>Two year</option></select><br>
+        Paperless Billing: <select name="PaperlessBilling"><option>Yes</option><option>No</option></select><br>
+        Payment Method: <select name="PaymentMethod">
+            <option>Electronic check</option>
+            <option>Mailed check</option>
+            <option>Bank transfer (automatic)</option>
+            <option>Credit card (automatic)</option>
+        </select><br>
+        Monthly Charges: <input type="number" step="0.01" name="MonthlyCharges" required><br>
+        Total Charges: <input type="number" step="0.01" name="TotalCharges" required><br>
+        <br><input type="submit" value="Predict">
+    </form>
+
+    {% if prediction %}
+        <h3>Prediction Result: {{ prediction }}</h3>
+    {% endif %}
+     </div>
+</body>
+</html>
